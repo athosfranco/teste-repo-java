@@ -3,7 +3,9 @@ public class PrimeiraClasseJava {
 
 	public static void main(String[] args) {
 		String nome ="Athos";
-		System.out.println("My name is " + nome + ".");
+		int age = 26;
+		System.out.println("My name is " + nome + "." + " Eu tenho " + age + " anos de idade.");
+		
 		
 
 	}
