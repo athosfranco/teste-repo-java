@@ -6,8 +6,7 @@ public class Pessoa {
 	
 	private String sobrenome;
 	
-	private int Idade;
-	
+	private int Idade;		
 	
 	public int getIdade() {
 		return Idade;
