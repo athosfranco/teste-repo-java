@@ -4,15 +4,19 @@ public class Aluno {
 	
 	//Atributos
 
-	public String nome;
-	public String sobrenome;
-	public String dataNascimento;
-	public String dataMatricula;
-	public String registroGeral;
-	public String numeroCpf;
-	public String nomePai;
-	public String nomeMae;
-	int idade;
+	private String nome;
+	private String sobrenome;
+	private String dataNascimento;
+	private String dataMatricula;
+	private String registroGeral;
+	private String numeroCpf;
+	private String nomePai;
+	private String nomeMae;
+	private int idade;
+	private double nota1;
+	private double nota2;
+	private double nota3;
+	private double nota4;
 
 		//Construtor
 	public Aluno(String nomePadrao, String sobrenomePadrao, String dataNascimentoPadrao, String dataMatriculaPadrao, String registroGeralPadrao,
@@ -38,6 +42,18 @@ public class Aluno {
 		System.out.println("Nome do pai: " + nomePai);
 		System.out.println("Nome da mãe: " + nomeMae);
 		System.out.println("Idade: " + idade);
+	}
+	
+	//Método de calculo de media das notas
+	public double getMediaNota() {
+		return (this.nota1 + this.nota2 + this.nota3 + this.nota4) / 4;
+		
+	}
+	
+	//Método pra saber se foi aprovado ou nao
+	public String resultado() {
+		double media = getMediaNota();
+		return media >= 7.0 ? "APROVADO" : "REPROVADO";
 	}
 	
 	//Métodos getters and setters
@@ -112,6 +128,38 @@ public class Aluno {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public double getNota1() {
+		return nota1;
+	}
+
+	public void setNota1(double nota1) {
+		this.nota1 = nota1;
+	}
+
+	public double getNota2() {
+		return nota2;
+	}
+
+	public void setNota2(double nota2) {
+		this.nota2 = nota2;
+	}
+
+	public double getNota3() {
+		return nota3;
+	}
+
+	public void setNota3(double nota3) {
+		this.nota3 = nota3;
+	}
+
+	public double getNota4() {
+		return nota4;
+	}
+
+	public void setNota4(double nota4) {
+		this.nota4 = nota4;
 	}
 	
 	
