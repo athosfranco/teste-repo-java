@@ -17,11 +17,11 @@ public class Aluno {
 	private int idade;
 
 	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	
+
 	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-	
+
 	public ArrayList<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
@@ -29,9 +29,6 @@ public class Aluno {
 	
 
 	////////////////////////////////////////////////////////////////////////////
-
-
-
 
 	// Construtor
 	public Aluno(String nomePadrao, String sobrenomePadrao, String dataNascimentoPadrao, String dataMatriculaPadrao,
@@ -56,11 +53,11 @@ public class Aluno {
 	// Método de calculo de media das notas
 	public double getMediaNota() {
 		double somaNotas = 0.0;
-		
+
 		for (Disciplina disciplina : disciplinas) {
-			somaNotas += disciplina.getNota();				
+			somaNotas += disciplina.getNota();
 		}
-		
+
 		return somaNotas / disciplinas.size();
 
 	}
@@ -70,8 +67,32 @@ public class Aluno {
 		double media = getMediaNota();
 		return media >= 7.0 ? true : false;
 	}
+	
+	//Método para listar todas as disciplinas
+	public void listarDisciplinas() {
+		System.out.println("----------LISTA DE DISCIPLINAS---------");
+		for (Disciplina disciplina : disciplinas) {
+			System.out.println("INDEX: " + disciplinas.indexOf(disciplina) + " - DISCIPLINA: " + disciplina.getDisciplina() + " - NOTA: " + disciplina.getNota());			
+		}
+	}
 
 	// Métodos getters and setters
+	
+	public void setAllInfo(String nomePadrao, String sobrenomePadrao, String dataNascimentoPadrao, String dataMatriculaPadrao,
+			String registroGeralPadrao, String numeroCpfPadrao, String nomePaiPadrao, String nomeMaePadrao,
+			int idadePadrao) {
+		nome = nomePadrao;
+		sobrenome = sobrenomePadrao;
+		dataNascimento = dataNascimentoPadrao;
+		dataMatricula = dataMatriculaPadrao;
+		registroGeral = registroGeralPadrao;
+		numeroCpf = numeroCpfPadrao;
+		nomePai = nomePaiPadrao;
+		nomeMae = nomeMaePadrao;
+		idade = idadePadrao;
+		
+		
+	}
 
 	public String getNome() {
 		return nome;
@@ -156,15 +177,17 @@ public class Aluno {
 		System.out.println("RG: " + this.registroGeral);
 		System.out.println("Nome do pai: " + this.nomePai);
 		System.out.println("Nome da mãe: " + this.nomeMae);
-		System.out.println("-----------------[NOTAS DO PERÍODO]------------------");
+		System.out.println("-----------------[NOTAS DO PERÍODO]-----------------");
+		for (Disciplina disciplina : disciplinas) {
+			System.out.println("Disciplina: " + disciplina.getDisciplina() + " - Nota: " + disciplina.getNota());
 
+		}
 
 		System.out.println("A média do período é: " + this.getMediaNota() + ", o aluno está "
 				+ (this.getAlunoAprovado() ? "Aprovado!" : "Reprovado!"));
 	}
 
 	// .toString();
-	
 
 	@Override
 	public int hashCode() {
@@ -177,7 +200,6 @@ public class Aluno {
 				+ ", dataMatricula=" + dataMatricula + ", registroGeral=" + registroGeral + ", numeroCpf=" + numeroCpf
 				+ ", nomePai=" + nomePai + ", nomeMae=" + nomeMae + ", idade=" + idade;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
