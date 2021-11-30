@@ -1,4 +1,4 @@
-import classes.objetos.Aluno;
+import sistemaDeAlunos.Aluno;
 
 public class PrimeiraClasseJava {
 
