@@ -63,9 +63,15 @@ public class Aluno {
 	}
 
 	// Método pra saber se foi aprovado ou nao
-	public boolean getAlunoAprovado() {
+	public String getAnalise() {
 		double media = getMediaNota();
-		return media >= 7.0 ? true : false;
+		if(media >= 4 && media <=6) {
+			return "em Recuperação";
+		} else if (media >= 7) {
+			return "Aprovado";
+		} else {
+			return "Reprovado";
+		}
 	}
 	
 	//Método para listar todas as disciplinas
@@ -184,7 +190,7 @@ public class Aluno {
 		}
 
 		System.out.println("A média do período é: " + this.getMediaNota() + ", o aluno está "
-				+ (this.getAlunoAprovado() ? "Aprovado!" : "Reprovado!"));
+				+ this.getAnalise() + ".");
 	}
 
 	// .toString();
