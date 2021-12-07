@@ -1,18 +1,24 @@
 package sistemaDeAlunos;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
+
+import cursoJavaConstantes.StatusAluno;
 
 public class CadastroDeAluno {
 	// ROTINA DE CADASTRO DE ALUNO
 	public static void main(String[] args) {
 
-		// Criando uma ArrayList para adicionar os alunos
+		// Criando uma ArrayList para adicionar os alunos;
 		ArrayList<Aluno> arrayAlunos = new ArrayList<Aluno>();
 
-		// Instanciando o boleano de cadastro
+		// Criando um HashMap para separar em listas os alunos AROVADOS, REPROVADOS e em
+		// RECUPERAÇÃO
+		HashMap<String, ArrayList<Aluno>> hashMapAlunos = new HashMap<String, ArrayList<Aluno>>();
+
+		// Instanciando o boleano de cadastro;
 		boolean encerrarCadastro = false;
 
 		while (!encerrarCadastro) {
@@ -102,6 +108,32 @@ public class CadastroDeAluno {
 				}
 				arrayAlunos.add(aluno1);
 
+			} // Aqui acaba o for de adição de alunos
+
+			// Inicializa os pares de CHAVES (status dos alunos) e os VALORES (arraylists)
+			// do hashMap inicializado na linha 19;
+			hashMapAlunos.put(StatusAluno.APROVADO, new ArrayList<Aluno>()); // Aqui é criado um key/pair value dentro
+																				// do hashMap
+			hashMapAlunos.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());// Aqui é criado um key/pair value dentro
+																				// do hashMap
+			hashMapAlunos.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());// Aqui é criado um key/pair value dentro
+																				// do hashMap
+
+			for (Aluno aluno : arrayAlunos) {
+				if (aluno.getAnalise() == StatusAluno.APROVADO) {
+					hashMapAlunos.get(StatusAluno.APROVADO).add(aluno); // Aqui buscamos a array armazenada na chave
+																		// especificada e adicionamos o aluno dentro
+																		// dessa array
+				} else if (aluno.getAnalise() == StatusAluno.REPROVADO) {
+					hashMapAlunos.get(StatusAluno.REPROVADO).add(aluno);// Aqui buscamos a array armazenada na chave
+																		// especificada e adicionamos o aluno dentro
+																		// dessa array
+				} else {
+					hashMapAlunos.get(StatusAluno.RECUPERACAO).add(aluno);// Aqui buscamos a array armazenada na chave
+																			// especificada e adicionamos o aluno dentro
+																			// dessa array
+				}
+
 			}
 			int encerrarOuVisualizarLista = Integer.parseInt(JOptionPane.showInputDialog("O cadastro de "
 					+ arrayAlunos.size()
@@ -110,8 +142,21 @@ public class CadastroDeAluno {
 				System.out.println("SISTEMA ENCERRADO.");
 				encerrarCadastro = true;
 			} else if (encerrarOuVisualizarLista == 2) {
-				for (Aluno aluno : arrayAlunos) {
-					System.out.println("===========================================");
+				System.out.println("========[ ALUNOS APROVADOS ]========");
+				for (Aluno aluno : hashMapAlunos.get(StatusAluno.APROVADO)) {
+
+					System.out.println("Nome: " + aluno.getNome() + " " + aluno.getSobrenome() + " / Média: "
+							+ aluno.getMediaNota() + " (" + aluno.getAnalise() + ")");
+				}
+				System.out.println("========[ ALUNOS EM RECUPERAÇÃO ]========");
+				for (Aluno aluno : hashMapAlunos.get(StatusAluno.RECUPERACAO)) {
+
+					System.out.println("Nome: " + aluno.getNome() + " " + aluno.getSobrenome() + " / Média: "
+							+ aluno.getMediaNota() + " (" + aluno.getAnalise() + ")");
+				}
+				System.out.println("========[ ALUNOS REPROVADOS ]========");
+				for (Aluno aluno : hashMapAlunos.get(StatusAluno.REPROVADO)) {
+
 					System.out.println("Nome: " + aluno.getNome() + " " + aluno.getSobrenome() + " / Média: "
 							+ aluno.getMediaNota() + " (" + aluno.getAnalise() + ")");
 				}

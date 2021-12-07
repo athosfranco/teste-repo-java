@@ -3,6 +3,8 @@ package sistemaDeAlunos;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import cursoJavaConstantes.StatusAluno;
+
 public class Aluno {
 
 	// Atributos
@@ -65,12 +67,12 @@ public class Aluno {
 	// Método pra saber se foi aprovado ou nao
 	public String getAnalise() {
 		double media = getMediaNota();
-		if(media >= 4 && media <=6) {
-			return "em Recuperação";
-		} else if (media >= 7) {
-			return "Aprovado";
+		if (media >=7) {
+			return StatusAluno.APROVADO;
+		} else if (media >= 5 && media <=6.99) {
+			return StatusAluno.RECUPERACAO;
 		} else {
-			return "Reprovado";
+			return StatusAluno.REPROVADO;
 		}
 	}
 	
